@@ -1,0 +1,104 @@
+{% include "header.html" %}
+
+{% for cafe in cafes: %}
+{% if cafes.index(cafe)%2 != 0 %}
+<section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex ms-auto rounded">
+                            <h2 class="section-heading mb-0">
+                                <span class="section-heading-lower">{{cafe.name}}</span>
+                                <span class="section-heading-upper"><a href="{{cafe.map_url}}">{{cafe.location}} </a></span>
+
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{cafe.img_url}}" alt="..." />
+                    <div class="product-item-description d-flex me-auto">
+                        <div class="bg-faded p-5 rounded">
+                            <p>{% if cafe.has_wifi==1 %}
+                                        <i class="fa fa-fw fa-wifi" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-wifi" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if cafe.has_sockets==1 %}
+                                        <i class="fa fa-fw fa-plug" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-plug" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if cafe.has_toilet==1 %}
+                                        <i class="fa fa-fw fa-solid fa-droplet" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-solid fa-droplet" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if cafe.can_take_calls==1 %}
+                                        <i class="fa fa-fw fa-phone" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-phone" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}</p>
+                            <p class="mb-0">{{cafe.description}}</p>
+                        <p>
+                                    <br>
+                                <a class="btn btn-primary float-right" href="{{url_for('edit', cafe_id=cafe.id)}}">Edit</a> <a class="btn btn-primary float-right" href="{{url_for('delete_cafe', cafe_id=cafe.id)}}">Delete</a>
+                                </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% else: %}
+        <section class="page-section">
+            <div class="container">
+                <div class="product-item">
+                    <div class="product-item-title d-flex">
+                        <div class="bg-faded p-5 d-flex me-auto rounded">
+                            <h2 class="section-heading mb-0">
+
+                                <span class="section-heading-lower">{{cafe.name}}</span>
+                                <span class="section-heading-upper"><a href="{{cafe.map_url}}">{{cafe.location}}</a></span>
+                            </h2>
+                        </div>
+                    </div>
+                    <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{cafe.img_url}}" alt="..." />
+                    <div class="product-item-description d-flex ms-auto">
+                        <div class="bg-faded p-5 rounded">
+                            <p>{% if cafe.has_wifi==1 %}
+                                        <i class="fa fa-fw fa-wifi" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-wifi" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if cafe.has_sockets==1 %}
+                                        <i class="fa fa-fw fa-plug" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-plug" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if cafe.has_toilet==1 %}
+                                        <i class="fa fa-fw fa-solid fa-droplet" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-solid fa-droplet" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if cafe.can_take_calls==1 %}
+                                        <i class="fa fa-fw fa-phone" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-phone" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}</p>
+
+                            <p class="mb-0">{{cafe.description}} </p>
+                            <p>
+                                    <br>
+                                <a class="btn btn-primary float-right" href="{{url_for('edit', cafe_id=cafe.id)}}">Edit</a> <a class="btn btn-primary float-right" href="{{url_for('delete_cafe', cafe_id=cafe.id)}}">Delete</a>
+                                </p>
+                        </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+    {% endfor %}
+
+{% include "footer.html" %}

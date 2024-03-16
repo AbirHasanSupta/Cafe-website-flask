@@ -1,0 +1,68 @@
+{% include "header.html"%}
+
+ <section class="page-section clearfix">
+            <div class="container">
+                <div class="intro">
+                    {% if random_cafe=='': %}
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="static/assets/img/intro.jpg" alt="..." />
+                    {% else: %}
+                    <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{{random_cafe.img_url}}" alt="..." />
+                    {% endif %}
+                    <div class="intro-text left-0 text-center bg-faded p-5 rounded">
+                        {% if random_cafe=='': %}
+                        <h2 class="section-heading mb-4">
+                            <span class="section-heading-lower">Fresh Coffe</span>
+                            <span class="section-heading-upper">Worth Drinking</span>
+                        </h2>
+                        <p class="mb-3">Every cup of quality artisan coffee served at the cafes we recommend starts with locally sourced, hand-picked ingredients. Once you try it, visiting our suggested cafes will be a blissful addition to your everyday morning routine - we guarantee it!</p>
+                        {% else: %}
+                        <h2 class="section-heading mb-4">
+                        <span class="section-heading-lower">{{random_cafe.name}}</span>
+                        <span class="section-heading-upper"> <a href="{{random_cafe.map_url}}">{{random_cafe.location}}</a></span>
+                        </h2>
+                         <p>{% if random_cafe.has_wifi==1 %}
+                                        <i class="fa fa-fw fa-wifi" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-wifi" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if random_cafe.has_sockets==1 %}
+                                        <i class="fa fa-fw fa-plug" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-plug" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if random_cafe.has_toilet==1 %}
+                                        <i class="fa fa-fw fa-solid fa-droplet" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-solid fa-droplet" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}
+
+                                        {% if random_cafe.can_take_calls==1 %}
+                                        <i class="fa fa-fw fa-phone" aria-hidden="true"></i>
+                                        {% else %}
+                                        <i class="fa fa-fw fa-phone" aria-hidden="true" style="color:white"></i>
+                                        {% endif %}</p>
+                        <p class="mb-3">{{random_cafe.description}}</p>
+                        {% endif %}
+                        <div class="intro-button mx-auto"><a class="btn btn-primary btn-xl" href="{{url_for('random_select')}}">Get a Glimpse!</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section cta">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 mx-auto">
+                        <div class="cta-inner bg-faded text-center rounded">
+                            <h2 class="section-heading mb-4">
+                                <span class="section-heading-upper">Our Promise</span>
+                                <span class="section-heading-lower">To You</span>
+                            </h2>
+                            <p class="mb-0">When you step into one of the cafes we recommend to start your day, we are committed to guiding you to friendly service, a welcoming atmosphere, and above all else, excellent products curated from the finest establishments in our area. If you are not satisfied with your experience, please let us know, and we will do everything in our power to ensure your cafe exploration journey is nothing short of exceptional!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% include "footer.html" %}
